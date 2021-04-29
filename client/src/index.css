@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.news-item:hover {
+  cursor: pointer;
+}
+
+.news-item:hover .news-title {
+  text-decoration: underline;
+}
+.devide-line {
+  background-color: grey;
+  height: 2px;
+
+  width: 100%;
+}
