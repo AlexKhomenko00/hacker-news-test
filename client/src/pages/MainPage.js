@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import newsOperations from "../redux/newsOperations";
+import newsOperations from "redux/newsOperations";
 
-import NewsList from "../containers/NewsListContainer";
-import { getIsLoading } from "../redux/newsSelectors";
-import MainPageLoader from "../components/MainPageLoader";
+import NewsList from "containers/NewsListContainer";
+import { getIsLoading } from "redux/newsSelectors";
+import MainPageLoader from "components/MainPageLoader";
 
 const MainPage = () => {
   const dispatch = useDispatch();

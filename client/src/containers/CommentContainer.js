@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { fetchNestedComments } from "../api/news";
-import Comment from "../components/Comment";
-import LoadMoreBtn from "../components/LoadMoreBtn";
+import { fetchNestedComments } from "api/news";
+import Comment from "components/Comment";
+import LoadMoreBtn from "components/LoadMoreBtn";
 
 const CommentContainer = ({ comment }) => {
   const [nestedComments, setNestedComments] = useState([]);

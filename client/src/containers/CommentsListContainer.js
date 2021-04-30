@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { fetchRootComments } from "../api/news";
-import CommentsList from "../components/CommentsList";
+import { fetchRootComments } from "api/news";
+import CommentsList from "components/CommentsList";
 
 const CommentsListContainer = ({ initialComments }) => {
   const [rootComments, setRootComments] = useState(

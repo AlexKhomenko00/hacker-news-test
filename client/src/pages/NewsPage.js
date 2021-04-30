@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchNews } from "../api/news";
+import { fetchNews } from "api/news";
 
-import actions from "../redux/newsActions";
-import { getIsLoading } from "../redux/newsSelectors";
+import actions from "redux/newsActions";
+import { getIsLoading } from "redux/newsSelectors";
 
-import News from "../components/News";
-import CommentsList from "../containers/CommentsListContainer";
-import NewsPageLoader from "../components/NewsPageLoader";
+import News from "components/News";
+import CommentsList from "containers/CommentsListContainer";
+import NewsPageLoader from "components/NewsPageLoader";
 
 export default function NewsPage({
   match: {

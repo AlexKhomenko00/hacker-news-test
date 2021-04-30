@@ -1,5 +1,5 @@
 import React from "react";
-import Comment from "../containers/CommentContainer";
+import Comment from "containers/CommentContainer";
 
 const CommentsList = ({ rootComments: comments }) => {
   return (
