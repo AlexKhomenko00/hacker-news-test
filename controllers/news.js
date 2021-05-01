@@ -25,10 +25,10 @@ export const getLatestNews = async (_, res) => {
 
 export const getNewsPiece = async (req, res) => {
   try {
-    const { params } = req;
-    console.log(params);
+    const {
+      params: { id },
+    } = req;
 
-    const { id } = params;
     const fetchedNews = await fetchById(id);
 
     if (fetchedNews.type !== "story") {
