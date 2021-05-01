@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "https://hacker-news-test-task.herokuapp.com";
+const BASE_URL = "https://hacker-news-test-task.herokuapp.com/api/news";
 
 export const fetchLatestNews = async () => {
   try {

@@ -1,9 +1,8 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "homepage": ".",
+  "homepage": "/.",
   "private": true,
-  "proxy": "https://hacker-news-test-task.herokuapp.com",
   "dependencies": {
     "@craco/craco": "^6.1.2",
     "@testing-library/jest-dom": "^5.12.0",
