@@ -2,9 +2,8 @@ import { fetchLatestNews } from "../api/news";
 
 import actions from "./newsActions";
 
-const getLatestNews = () => async (dispatch, getState) => {
-  const { news } = getState();
-  if (news.length === 0) {
+const getLatestNews = (triggered) => async (dispatch, getState) => {
+  if (triggered) {
     dispatch({ type: actions.LOAD_NEWS_START.toString() });
   }
 

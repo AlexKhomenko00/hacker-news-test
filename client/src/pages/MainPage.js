@@ -4,27 +4,30 @@ import newsOperations from "redux/newsOperations";
 
 import NewsList from "containers/NewsListContainer";
 import { getIsLoading } from "redux/newsSelectors";
-import MainPageLoader from "components/MainPageLoader";
+import MainPageLoader from "components/Loaders/MainPageLoader";
+import { useCallback } from "react";
 
 const MainPage = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getIsLoading);
 
+  const fetchLastestNews = useCallback(
+    (triggered) => dispatch(newsOperations.getLatestNews(triggered)),
+    [dispatch]
+  );
+
   useEffect(() => {
-    dispatch(newsOperations.getLatestNews());
-    const updateInterval = setInterval(
-      () => dispatch(newsOperations.getLatestNews()),
-      60000
-    );
+    fetchLastestNews(true);
+    const updateInterval = setInterval(fetchLastestNews, 60000);
 
     return () => clearInterval(updateInterval);
-  }, [dispatch]);
+  }, [dispatch, fetchLastestNews]);
 
   if (isLoading) return <MainPageLoader />;
 
   return (
     <section className="main-page pt-6">
-      <NewsList />
+      <NewsList onRefresh={fetchLastestNews} />
     </section>
   );
 };

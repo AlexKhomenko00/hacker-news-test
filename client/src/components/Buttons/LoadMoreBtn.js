@@ -4,12 +4,12 @@ const LoadMoreBtn = ({ onLoadMore, commentLengh }) => {
   return (
     <button
       onClick={onLoadMore}
-      className="load-nested-comments focus:outline-none text-sm  flex"
+      className="load-nested-comments focus:outline-none text-base  flex"
     >
       {commentLengh}
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-3 w-3 mr-1"
+        className="h-4 w-4 ml-1"
         viewBox="0 0 20 20"
         fill="orangered"
       >

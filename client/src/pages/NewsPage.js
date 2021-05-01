@@ -5,9 +5,10 @@ import { fetchNews } from "api/news";
 import actions from "redux/newsActions";
 import { getIsLoading } from "redux/newsSelectors";
 
-import News from "components/News";
+import News from "components/News/News";
 import CommentsList from "containers/CommentsListContainer";
-import NewsPageLoader from "components/NewsPageLoader";
+import NewsPageLoader from "components/Loaders/NewsPageLoader";
+import DevideLine from "components/DevideLine";
 
 export default function NewsPage({
   match: {
@@ -20,12 +21,16 @@ export default function NewsPage({
   const [news, setNews] = useState({});
 
   useEffect(() => {
+    let cancel = false;
+
     const fetchNewsPiece = async (id) => {
       try {
         dispatch({ type: actions.LOAD_NEWS_PIECE_START.toString() });
         const news = await fetchNews(id);
+        if (cancel) {
+          return;
+        }
         setNews(news);
-        dispatch({ type: actions.LOAD_NEWS_PIECE_SUCCESS.toString() });
       } catch (e) {
         dispatch({ type: actions.LOAD_NEWS_PIECE_ERROR.toString() });
       } finally {
@@ -34,6 +39,10 @@ export default function NewsPage({
     };
 
     fetchNewsPiece(newsId);
+
+    return () => {
+      cancel = true;
+    };
   }, [newsId, dispatch]);
 
   if (isLoading) return <NewsPageLoader />;
@@ -43,7 +52,7 @@ export default function NewsPage({
       <News news={news}>
         {news.kids && news.kids.length > 0 && (
           <>
-            <hr className="devide-line my-6" />
+            <DevideLine />
             <CommentsList initialComments={news.kids} />
           </>
         )}

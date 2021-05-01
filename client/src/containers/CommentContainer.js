@@ -1,40 +1,42 @@
 import React, { useEffect, useState } from "react";
 import { fetchNestedComments } from "api/news";
-import Comment from "components/Comment";
-import LoadMoreBtn from "components/LoadMoreBtn";
+import Comment from "components/Comments/Comment";
 
 const CommentContainer = ({ comment }) => {
-  const [nestedComments, setNestedComments] = useState([]);
+  const [nestedComments, setNestedComments] = useState(null);
+  const [showNestedComments, setShowNestedComments] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     return () => {
-      setNestedComments(null);
+      setNestedComments("unmounted");
     };
   }, []);
 
-  const handleLoadMore = async (commmentId) => {
-    if (nestedComments.length > 0) return setNestedComments([]);
-    const fetchedComments = await fetchNestedComments(commmentId);
+  const handleLoadMore = async () => {
+    setShowNestedComments((prevShow) => !prevShow);
+    if (nestedComments) return;
+    setIsLoading(true);
+    const fetchedComments = await fetchNestedComments(comment.id);
 
-    if (!nestedComments) {
+    setIsLoading(false);
+
+    if (nestedComments === "unmounted") {
       return;
     }
-    setNestedComments(fetchedComments);
+
+    setNestedComments(fetchedComments.filter((comment) => !comment.deleted));
   };
 
   return (
-    <Comment root comment={comment}>
-      {comment.kids && (
-        <LoadMoreBtn
-          commentLengh={comment.kids.length}
-          onLoadMore={() => handleLoadMore(comment.id)}
-        />
-      )}
-      {nestedComments.length > 0 &&
-        nestedComments.map((comment) => (
-          <Comment key={comment.id} comment={comment} />
-        ))}
-    </Comment>
+    <Comment
+      root
+      comment={comment}
+      nestedComments={nestedComments}
+      handleLoadMore={handleLoadMore}
+      showNestedComments={showNestedComments}
+      loading={isLoading}
+    ></Comment>
   );
 };
 

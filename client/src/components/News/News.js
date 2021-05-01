@@ -1,18 +1,15 @@
 import React from "react";
-import ReactHtmlParser from "react-html-parser";
 import { Link } from "react-router-dom";
+import { formatLongTime, parseParagraph } from "../helpers/render";
 
-const News = ({
-  news: { title, url, time, by: author, text, kids },
-  children,
-}) => {
+const News = ({ news: { title, url, time, by: author, text }, children }) => {
   return (
     <article className="news">
       <Link to="/">
         <span className="go-back flex mb-3 text-gray-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 mr-2 "
+            className="h-6 w-6 mr-1"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -49,28 +46,21 @@ const News = ({
           {"  "}
           {author}
         </span>
-        <span className="news-time text-gray-500">{`${new Date(
-          time * 1000
-        ).toLocaleDateString("us-US", {
-          minute: "2-digit",
-          hour: "2-digit",
-          day: "numeric",
-          month: "long",
-        })}`}</span>
+        <span className="news-time text-gray-500">{formatLongTime(time)}</span>
       </div>
 
-      <a
-        href={url}
-        target="_blank"
-        rel="noreferrer"
-        className="news-link underline text-gray-500 hover:text-gray-900 hover:shadow-sm"
-      >
-        {url}
-      </a>
+      {url && (
+        <a
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+          className="news-link underline text-gray-500 hover:text-gray-900 hover:shadow-sm"
+        >
+          {url}
+        </a>
+      )}
       {text && (
-        <div className="news-text mb-5 text-lg">
-          {ReactHtmlParser(`<p>${text}</p>`)}
-        </div>
+        <div className="news-text mb-5 text-lg">{parseParagraph(text)}</div>
       )}
       {children}
     </article>
