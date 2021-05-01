@@ -6,7 +6,7 @@ const NewsGridItem = ({ news: { title, text, by, time, id, score } }) => {
   return (
     <li
       key={id}
-      className={`news-item flex row-span-${
+      className={`news-item flex md:row-span-${
         text ? "2" : "1"
       }  p-5 shadow hover:shadow-lg align-top`}
     >
@@ -16,7 +16,11 @@ const NewsGridItem = ({ news: { title, text, by, time, id, score } }) => {
             @{by}
           </span>
           <h3 className="news-title font-bold">{title}</h3>
-          {text && parseParagraph(text)}
+          {text && (
+            <div className="text-wrapper hidden md:block">
+              {parseParagraph(text)}
+            </div>
+          )}
 
           <div className="adittional-data flex justify-between mt-2 ">
             <span className="time text-gray-400">{formatTime(time)}</span>
