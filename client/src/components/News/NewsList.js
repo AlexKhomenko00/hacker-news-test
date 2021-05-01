@@ -7,7 +7,7 @@ import RefreshBtn from "components/Buttons/RefreshBtn";
 
 const NewsList = ({ newsList, bestNews, onRefresh }) => {
   return (
-    <section className="news-list">
+    <section className="news-list px-2 lg:px-0">
       <div className="refresh-wrapper text-right">
         <RefreshBtn onResfresh={() => onRefresh(true)} />
       </div>
