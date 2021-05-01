@@ -24,7 +24,7 @@ const News = ({ news: { title, url, time, by: author, text }, children }) => {
           Back to Latest News
         </span>
       </Link>
-      <h1 className="news-title font-bold leading-tight  text-5xl mb-3">
+      <h1 className="news-title font-bold leading-tight text-3xl  md:text-5xl mb-3">
         {title}
       </h1>
       <div className="news-data flex mb-8 justify-between">
