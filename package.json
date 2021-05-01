@@ -4,12 +4,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "homepage": ".",
-  "proxy": "https://hacker-news-test-task.herokuapp.com/",
   "scripts": {
     "start": "cross-env NODE_ENV=production node index.js",
     "server": "nodemon index.js",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
     "client": "npm run start --prefix client",
     "client:install": "npm install --prefix client",
     "client:build": "npm run build --prefix client",

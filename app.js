@@ -15,12 +15,12 @@ app.use(express.json());
 
 app.use("/api/news", newsRouter);
 
-if (process.env.NODE_ENV === "production") {
-  app.use("/", express.static(path.join(__dirname, "client", "build")));
+// if (process.env.NODE_ENV === "production") {
+//   app.use("/", express.static(path.join(__dirname, "client", "build")));
 
-  app.get("*", (_, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
+//   app.get("*", (_, res) => {
+//     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+//   });
+// }
 
 export default app;
